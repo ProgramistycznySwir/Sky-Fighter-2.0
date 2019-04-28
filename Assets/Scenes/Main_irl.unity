@@ -437,6 +437,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 599076830299203343, guid: 90818680ab9b5ef4580024d91aaaa8dd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -30
+      objectReference: {fileID: 0}
     - target: {fileID: 1221559560760513742, guid: 90818680ab9b5ef4580024d91aaaa8dd,
         type: 3}
       propertyPath: m_IsActive
@@ -450,7 +455,7 @@ PrefabInstance:
     - target: {fileID: 1868205324882658489, guid: 90818680ab9b5ef4580024d91aaaa8dd,
         type: 3}
       propertyPath: weaponTiers.Array.data[2]
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1868205324882658489, guid: 90818680ab9b5ef4580024d91aaaa8dd,
         type: 3}

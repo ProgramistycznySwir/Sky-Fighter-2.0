@@ -85,6 +85,8 @@ public class WeaponManaging_irl : MonoBehaviour
         else ChangeWeapon(currentWeaponID + 1);
     }
 
+    private float[] weaponDelay = new float[2]; //don't forget about this (
+
     public void ChangeWeapon(int newWeaponID)
     {
         Destroy(weapons[0].gameObject);

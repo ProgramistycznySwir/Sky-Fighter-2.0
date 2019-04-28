@@ -125,8 +125,8 @@ public class FlakWeapon_irl : Weapon_irl
                 }
             case 8:
                 {
-                    damage = 750f; //10
-                    firerate = 1f;
+                    damage = 600f; //10
+                    firerate = 1.5f;
                     projectileVelocity = 750f;
                     energyConsumption = 1000f;
                     ammoConsumption = 0;
