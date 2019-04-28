@@ -128,7 +128,7 @@ public class FlakWeapon_irl : Weapon_irl
                     damage = 750f; //10
                     firerate = 1f;
                     projectileVelocity = 750f;
-                    energyConsumption = 500f;
+                    energyConsumption = 1000f;
                     ammoConsumption = 0;
                     explosionRadius = 30f;
                     break;
