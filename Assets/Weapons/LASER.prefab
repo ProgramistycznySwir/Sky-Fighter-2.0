@@ -220,7 +220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4586902790253494779}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 167259531518134730}
@@ -243,12 +243,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 320477739576729597}
   tier: 1
+  energyConsumption: 0
+  ammoConsumption: 0
+  range: 0
+  safeRange: 0
   laserBeamRenderer: {fileID: 4481778168401695202}
   light: {fileID: 6941675213075110208}
   dps: 0
-  range: 0
-  energyConsumption: 0
   colorOfLaser: {r: 0, g: 0, b: 0, a: 0}
+  beamZDislocation: -1
 --- !u!1 &5529970093246724085
 GameObject:
   m_ObjectHideFlags: 0
