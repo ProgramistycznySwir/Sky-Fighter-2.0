@@ -5,6 +5,7 @@ public class GenerateMap : MonoBehaviour
     [Header("  Map:")]
     public float mapRadius;
     public float mapBorder;
+    public float startRingRadius;
 
     [Header("  Asteroids:")]
     public GameObject[] asteroidShapes;
@@ -35,7 +36,7 @@ public class GenerateMap : MonoBehaviour
             int whichShape = Random.Range(0, asteroidShapes.Length);
 
             float theta = Random.Range(0, Mathf.PI * 2);
-            float distance = Random.Range(100f, mapRadius - mapBorder);
+            float distance = Random.Range(startRingRadius, mapRadius - mapBorder);
 
             Vector3 position = new Vector3(Mathf.Cos(theta) * distance, 0, Mathf.Sin(theta) * distance);
             Quaternion rotation = new Quaternion(Random.value, Random.value, Random.value, Random.value);

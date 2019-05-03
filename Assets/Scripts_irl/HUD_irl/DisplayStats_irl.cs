@@ -68,6 +68,12 @@ public class DisplayStats_irl : MonoBehaviour
                     ammoText.text = "Ammo: " + weaponManager.cannonAmmo + " / " + weaponManager.maxCannonAmmo + " (" + weaponManager.weapons[0].ammoConsumption + ")";
                     break;
                 }
+            case 3:
+                {
+                    ammoText.color = Color.HSVToRGB(weaponManager.weapons[0].transform.GetComponent<HitscanWarmupWeapon_irl>().warmupPhase * 0.33333f, 1f, 1f);
+                    ammoText.text = "Warmup: " + System.Math.Round(weaponManager.weapons[0].transform.GetComponent<HitscanWarmupWeapon_irl>().warmupPhase * 100f) + "% (" + weaponManager.weapons[0].transform.GetComponent<HitscanWarmupWeapon_irl>().warmupTime + "s)";
+                    break;
+                }
             default:
                 {
                     ammoText.text = "Ammo: NaN";

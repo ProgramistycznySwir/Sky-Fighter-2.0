@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class FlakBullet_irl : MarchingBullet_irl
@@ -22,7 +22,7 @@ public class FlakBullet_irl : MarchingBullet_irl
 
 
     private RaycastHit[] hits;
-    private System.Collections.Generic.List<string> hittedShips = new System.Collections.Generic.List<string>(); //for not inflicting damage several times to same ship (multicollider)
+    private List<string> hittedShips = new System.Collections.Generic.List<string>(); //for not inflicting damage several times to same ship (multicollider)
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -38,28 +38,21 @@ public class FlakBullet_irl : MarchingBullet_irl
             
             foreach (RaycastHit hit in hits)
             {
-                if (!hittedShips.Contains(hit.collider.name))
+                if (!hittedShips.Contains(hit.collider.name) && hit.collider.tag == "Player")
                 {
                     hittedShips.Add(hit.collider.name);
                     hit.collider.transform.parent.GetComponentInParent<Stats>().ReceiveDamage(damage, hit.point);
                 }                
             }
+            Die();
         }
 
         float marchDistance = velocity * Time.fixedDeltaTime;
 
-        if (Physics.Raycast(transform.position, transform.forward, out raycast, marchDistance) && matterialisationDelay <= 0)
-        {
-            transform.position = raycast.point;
-            //if (raycast.collider.tag == "Player") raycast.collider.transform.parent.GetComponentInParent<Stats>().ReceiveDamage(damage, raycast.point);
-
-            Die();
-        }
-        else
-        {
-            matterialisationDelay--;
-            March();
-        }
+        
+        matterialisationDelay--;
+        March();
+        
 
 
         lifetime += Time.fixedDeltaTime;
@@ -67,7 +60,6 @@ public class FlakBullet_irl : MarchingBullet_irl
 
     private void Explode()
     {
-
         Die();
     }
 

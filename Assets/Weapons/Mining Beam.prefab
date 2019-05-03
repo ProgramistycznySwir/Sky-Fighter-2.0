@@ -94,7 +94,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1193425507774199140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.5}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5989664313139785058}
@@ -177,7 +177,7 @@ LineRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 64957
+      atime1: 65535
       atime2: 0
       atime3: 0
       atime4: 0
@@ -204,7 +204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5989664313139785058}
-  - component: {fileID: 6626570745700192545}
+  - component: {fileID: 8069809603210882221}
   m_Layer: 0
   m_Name: Mining Beam
   m_TagString: Untagged
@@ -229,7 +229,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6626570745700192545
+--- !u!114 &8069809603210882221
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,20 +238,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 4586902790253494779}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c9fb54c06d3e7343997ba55f844ca35, type: 3}
+  m_Script: {fileID: 11500000, guid: 36500f784434066418da52b67ad033f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   renderer: {fileID: 320477739576729597}
-  tier: 1
+  tier: 0
   energyConsumption: 0
   ammoConsumption: 0
   range: 0
   safeRange: 0
   laserBeamRenderer: {fileID: 4481778168401695202}
   light: {fileID: 6941675213075110208}
-  dps: 0
+  warmupTime: 0
+  dewarmingRatio: 2.5
+  dpsFull: 0
   colorOfLaser: {r: 0, g: 0, b: 0, a: 0}
-  beamZDislocation: -1
+  beamZDislocation: -5
 --- !u!1 &5529970093246724085
 GameObject:
   m_ObjectHideFlags: 0

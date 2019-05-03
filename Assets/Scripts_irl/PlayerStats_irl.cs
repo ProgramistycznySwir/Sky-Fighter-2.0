@@ -80,7 +80,7 @@ public class PlayerStats_irl : Stats
                 //shieldAnimator.Enabled(false);
             }
 
-            ShieldReaction(ratio, point);
+            //ShieldReaction(ratio, point);
         }
         else hull -= dmg;
 
