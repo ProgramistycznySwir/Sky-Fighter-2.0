@@ -22,22 +22,41 @@ public class HitscanWeapon_irl : Weapon_irl
     float energyPerFrame;
 
     // Update is called once per frame
-    void Update()
+    void Update() //370u/s is hards speed limit couse of hitscan hitting itself
     {
 
-        energyPerFrame = energyConsumption * Time.deltaTime;
+        //energyPerFrame = energyConsumption * Time.deltaTime;
 
         if (firing && CheckForEnergy())
         {
             laserBeamRenderer.gameObject.SetActive(true);
             light.enabled = true;
-            _Fire();
+            _FireAnimation();
         }
         else
         {
             laserBeamRenderer.gameObject.SetActive(false);
             light.enabled = false;
         }
+        //firing = false;
+    }
+
+    void FixedUpdate() //370u/s is hards speed limit couse of hitscan hitting itself
+    {
+
+        energyPerFrame = energyConsumption * Time.fixedDeltaTime;
+
+        if (firing && CheckForEnergy())
+        {
+            //laserBeamRenderer.gameObject.SetActive(true);
+            //light.enabled = true;
+            _Fire();
+        }
+        //else
+        //{
+        //    laserBeamRenderer.gameObject.SetActive(false);
+        //    light.enabled = false;
+        //}
         firing = false;
     }
 
@@ -52,13 +71,31 @@ public class HitscanWeapon_irl : Weapon_irl
         else return false;
     }
 
+    protected void _FireAnimation()
+    {
+        RaycastHit hit;
+
+        laserBeamRenderer.SetPosition(0, laserBeamRenderer.transform.position + laserBeamRenderer.transform.forward * beamZDislocation);
+
+        if (Physics.Raycast(laserBeamRenderer.transform.position, laserBeamRenderer.transform.forward, out hit, range))
+        {
+            laserBeamRenderer.SetPosition(1, hit.point);
+            light.transform.position = hit.point - transform.forward * 0.1f;
+        }
+        else
+        {
+            laserBeamRenderer.SetPosition(1, laserBeamRenderer.transform.position + laserBeamRenderer.transform.forward * range);
+            light.enabled = false;
+        }
+    }
+
     protected void _Fire()
-    {        
+    {
         PlayerStats_irl stats = weaponManager.GetComponentInParent<PlayerStats_irl>();
 
         RaycastHit hit;
 
-        laserBeamRenderer.SetPosition(0, laserBeamRenderer.transform.position + laserBeamRenderer.transform.forward * beamZDislocation);
+        //laserBeamRenderer.SetPosition(0, laserBeamRenderer.transform.position + laserBeamRenderer.transform.forward * beamZDislocation);
 
         if (Physics.Raycast(laserBeamRenderer.transform.position, laserBeamRenderer.transform.forward, out hit, range))
         {
@@ -68,14 +105,14 @@ public class HitscanWeapon_irl : Weapon_irl
                 hit.collider.transform.parent.GetComponentInParent<Stats>().ReceiveDamage(dps * Time.deltaTime, hit.point);
             }
 
-            laserBeamRenderer.SetPosition(1, hit.point);
-            light.transform.position = hit.point - transform.forward * 0.1f;
+            //laserBeamRenderer.SetPosition(1, hit.point);
+            //light.transform.position = hit.point - transform.forward * 0.1f;
         }
-        else
-        {
-            laserBeamRenderer.SetPosition(1, laserBeamRenderer.transform.position + laserBeamRenderer.transform.forward * range);
-            light.enabled = false;
-        }
+        //else
+        //{
+        //    laserBeamRenderer.SetPosition(1, laserBeamRenderer.transform.position + laserBeamRenderer.transform.forward * range);
+        //    light.enabled = false;
+        //}
 
         stats.energy -= energyPerFrame;
     }

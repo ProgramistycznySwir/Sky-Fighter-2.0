@@ -13,14 +13,14 @@ TagManager:
   - UI
   - 
   - 
-  - Player
-  - Projectile
-  - Enviroment
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Team1
+  - Team2
+  - Team3
+  - Team4
+  - P1GUI
+  - P2GUI
+  - P3GUI
+  - P4GUI
   - 
   - 
   - 
