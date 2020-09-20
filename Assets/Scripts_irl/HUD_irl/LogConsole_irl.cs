@@ -88,9 +88,7 @@ public class LogConsole_irl : MonoBehaviour
 
 
         foreach (Log log in listOfLogs)
-        {
-            masterText += ">" + log.text + "\n";
-        }
+            masterText += $">{log.text}\n";
 
         console.text = masterText;
     }
@@ -145,7 +143,7 @@ public class LogConsole_irl : MonoBehaviour
         public int ID;
         public float timeStamp;
 
-        public string text;        
+        public string text;
         public float lifespan;
 
         public Log(string text, int logID, float lifespan)
@@ -156,14 +154,12 @@ public class LogConsole_irl : MonoBehaviour
             this.lifespan = lifespan;
             //Debug.Log("Created new log: (" + ID + "/\"" + this.text + "\"/" + timeStamp + ")");
         }
+
         /// <summary>
-        /// Checks the age of log and deletes it if it's too old
+        /// Checks the age of a log
         /// </summary>
         /// <returns> If dead</returns>
         public bool CheckAge()
-        {
-            if (timeStamp + lifespan < Time.time ) return true;
-            return false;
-        }
+        { return (timeStamp + lifespan < Time.time); }
     }
 }

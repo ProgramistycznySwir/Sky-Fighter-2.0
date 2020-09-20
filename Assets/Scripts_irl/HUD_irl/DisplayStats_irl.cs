@@ -101,8 +101,8 @@ public class DisplayStats_irl : MonoBehaviour
 
     public virtual void UpdateWeapon()
     {
-        if(weaponManager.weaponTiers[weaponManager.currentWeaponID] == 8) weaponText.text = "Weapon: Null Field " + weaponManager.availableWeapons[weaponManager.currentWeaponID].name;
-        else weaponText.text = "Weapon: " + weaponManager.availableWeapons[weaponManager.currentWeaponID].name + " " + RomanSignOfInt(weaponManager.currentWeaponTier);
+        if(weaponManager.weaponTiers[weaponManager.currentWeaponID] == 8) weaponText.text = "Weapon: Null Field " + WeaponMaster.availableWeapons[weaponManager.currentWeaponID].name;
+        else weaponText.text = "Weapon: " + WeaponMaster.availableWeapons[weaponManager.currentWeaponID].name + " " + RomanSignOfInt(weaponManager.currentWeaponTier);
     }
 
     public virtual void UpdateCameraMode()

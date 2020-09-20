@@ -11,8 +11,6 @@ public class WeaponManaging_irl : MonoBehaviour
     public KeyCode fire = KeyCode.G;
     public KeyCode cycleWeapon = KeyCode.R;
 
-    public GameObject[] availableWeapons;
-
     public Transform hardpointR;
     public Transform hardpointL;
 
@@ -78,7 +76,7 @@ public class WeaponManaging_irl : MonoBehaviour
 
     public void CycleWeapon()
     {
-        if(currentWeaponID + 1 > availableWeapons.Length - 1)
+        if(currentWeaponID + 1 > WeaponMaster.availableWeapons.Length - 1)
         {
             ChangeWeapon(0);
         }
@@ -89,8 +87,8 @@ public class WeaponManaging_irl : MonoBehaviour
 
     public void ChangeWeapon(int newWeaponID)
     {
-        Destroy(weapons[0].gameObject);
-        Destroy(weapons[1].gameObject);
+        foreach(Weapon_irl weapon in weapons)
+            Destroy(weapon.gameObject);
 
         currentWeaponID = newWeaponID;
 
@@ -101,14 +99,14 @@ public class WeaponManaging_irl : MonoBehaviour
     {
         currentWeaponID = weaponID;
         {
-            GameObject weaponR = Instantiate(availableWeapons[weaponID], hardpointR);
+            GameObject weaponR = Instantiate(WeaponMaster.availableWeapons[weaponID], hardpointR);
             weapons[0] = weaponR.GetComponent<Weapon_irl>();
             weapons[0].AssignWeaponManager(this);
             weapons[0].SetTier(weaponTiers[weaponID]);
         }
 
         {
-            GameObject weaponL = Instantiate(availableWeapons[weaponID], hardpointL);
+            GameObject weaponL = Instantiate(WeaponMaster.availableWeapons[weaponID], hardpointL);
             weapons[1] = weaponL.GetComponent<Weapon_irl>();
             weapons[1].AssignWeaponManager(this);
             weapons[1].SetTier(weaponTiers[weaponID]);

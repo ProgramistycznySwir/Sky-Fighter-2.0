@@ -15,41 +15,39 @@ public class DisplayStats : MonoBehaviour
 
     public TextMesh velocityText;
 
-    public TextMesh weapon;
-    public TextMesh ammo;
+    public TextMesh weaponText;
+    public TextMesh ammoText;
     private Color ammoColor;
 
     // Start is called before the first frame update
     void Start()
     {
-        ammoColor = ammo.color;
+        ammoColor = ammoText.color;
         UpdateWeapon();
     }
 
     // Update is called once per frame
     void Update()
     {
-        hpText.text = "Hull: " + System.Convert.ToString(System.Convert.ToInt16(stats.hull * 100f / stats.maxHull)) + "%";
-        energyText.text = "Energy: " + System.Convert.ToString(System.Convert.ToInt16(stats.energy * 100f / stats.maxEnergy)) + "%";
-        if (stats.shieldOnline) shieldText.text = "Shield: " + System.Convert.ToString(System.Convert.ToInt16(stats.shield * 100f / stats.shieldCapacity)) + "%";
-        else shieldText.text = "Shield: ERR";
-
-        velocityText.text = "v: " + System.Convert.ToSingle(System.Convert.ToInt32(rigidbody.velocity.magnitude * 100f)) / 100f + "m/s";
+        hpText.text = $"Hull: {System.Convert.ToInt16(stats.hull * 100f / stats.maxHull)}%";
+        energyText.text = $"Energy: {System.Convert.ToInt16(stats.energy * 100f / stats.maxEnergy)}%";
+            shieldText.text = $"Shield: {((stats.shieldOnline) ? $"{System.Convert.ToInt16(stats.shield * 100f / stats.shieldCapacity)}%" : "ERR")}";
+        
+        velocityText.text = $"v: {rigidbody.velocity.magnitude.ToString("F2")}m/s";
 
 
         switch (weaponManager.currentWeaponID)
         {
             case 0:
                 {
-                    if (weaponManager.cannonAmmo == 0) ammo.color = Color.red;
-                    else ammo.color = ammoColor;
+                    ammoText.color = (weaponManager.cannonAmmo == 0) ? Color.red : ammoColor;
 
-                    ammo.text = "Ammo: " + weaponManager.cannonAmmo + " / " + weaponManager.maxCannonAmmo;
+                    ammoText.text = "Ammo: " + weaponManager.cannonAmmo + " / " + weaponManager.maxCannonAmmo;
                     break;
                 }
             default:
                 {
-                    ammo.text = "Ammo: NaN";
+                    ammoText.text = "Ammo: NaN";
                     break;
                 }
         }
@@ -58,6 +56,6 @@ public class DisplayStats : MonoBehaviour
 
     public virtual void UpdateWeapon()
     {
-        weapon.text = "Weapon: " + weaponManager.availableWeapons[weaponManager.currentWeaponID].name;
+        weaponText.text = $"Weapon: {WeaponMaster.availableWeapons[weaponManager.currentWeaponID].name}";
     }
 }

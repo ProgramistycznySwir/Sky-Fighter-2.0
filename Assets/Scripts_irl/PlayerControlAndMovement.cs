@@ -18,8 +18,8 @@ public class PlayerControlAndMovement : MonoBehaviour
     
 
     [Header("Movement Stats:")]
-    public float forwardAcceleration = 2500f;
-    public float strafeAcceleration = 1500f;
+    public float forwardAcceleration = 25f;
+    public float strafeAcceleration = 15f;
     public float RCSPower = 7.5f;
 
     public float dampingForce = 2f;
@@ -37,41 +37,26 @@ public class PlayerControlAndMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (Input.GetKey(thrustForward))
-        {
-            rigidbody.AddRelativeForce(0, 0, forwardAcceleration * Time.fixedDeltaTime, ForceMode.Acceleration);
-        }
+            rigidbody.AddRelativeForce(0, 0, forwardAcceleration, ForceMode.Acceleration);
         else if (Input.GetKey(thrustBackward))
-        {
-            rigidbody.AddRelativeForce(0, 0, -strafeAcceleration * Time.fixedDeltaTime, ForceMode.Acceleration);
-        }
+            rigidbody.AddRelativeForce(0, 0, -strafeAcceleration, ForceMode.Acceleration);
 
         if (Input.GetKey(strafeRight))
-        {
-            rigidbody.AddRelativeForce(strafeAcceleration * Time.fixedDeltaTime, 0, 0, ForceMode.Acceleration);
-        }
+            rigidbody.AddRelativeForce(strafeAcceleration, 0, 0, ForceMode.Acceleration);
         else if (Input.GetKey(strafeLeft))
-        {
-            rigidbody.AddRelativeForce(-strafeAcceleration * Time.fixedDeltaTime, 0, 0, ForceMode.Acceleration);
-        }
+            rigidbody.AddRelativeForce(-strafeAcceleration, 0, 0, ForceMode.Acceleration);
 
         if (Input.GetKey(rotateRight))
-        {
             rigidbody.AddRelativeTorque(0, RCSPower, 0, ForceMode.Acceleration);
-        }
         else if (Input.GetKey(rotateLeft))
-        {
             rigidbody.AddRelativeTorque(0, -RCSPower, 0, ForceMode.Acceleration);
-        }
 
         if (Input.GetKey(dampMovement))
-        {
             rigidbody.drag = dampingForce;
-        }
         else rigidbody.drag = normalDrag;
 
         //BUG FIX (don't judge)
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-
     }
 }
